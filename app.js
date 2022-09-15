@@ -102,6 +102,24 @@ app.post("/todos", isLoggedIn, async (req, res) => {
     }
 })
 
+app.put("/todos/:id/edit", isLoggedIn, async (req, res) => {
+    try {
+        await Task.findByIdAndUpdate(req.params.id, req.body).exec()
+        res.redirect("/todos")
+    } catch (err) {
+        res.send(err)
+    }
+})
+
+app.delete("/todos/:id", async (req, res) => {
+    try {
+        await Task.findByIdAndDelete(req.params.id).exec()
+        res.redirect("/todos")
+    } catch (err) {
+        res.send(err)
+    }
+})
+
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) {
         return next()

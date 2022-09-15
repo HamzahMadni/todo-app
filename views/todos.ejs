@@ -1,0 +1,88 @@
+<%- include("partials/header") %>
+<div class="todopage">
+        <h1 id="todolist">To Do List</h1>
+        <h2 id="createNewTask">Create New Task:</h2>
+        <form action="/todos" method="POST">
+            <!-- <label for="task">Task</label> -->
+            <input id="task" type="text" name="title" placeholder="Task" required autofocus>
+            <!-- <label for="deadline">Deadline</label> -->
+            <input id="dateInput" type="date" name="date">
+            <button id="createButton" type="submit">Create</button>
+        </form>
+        <ul>
+          <% tasks.forEach((task) => { %>
+            <div class="container">
+                <form class="displayedForm" method="POST" action="/todos/<%= task._id.toString() %>/edit?_method=PUT">
+                    <input class="displayedTask" name="title" type="text" value="<%= task.title %>" readonly id="title<%=task._id.toString()%>">
+                    <input id="date<%= task._id.toString()%>" class= "displayedDate <%= !task.date ? 'hide' : ''%>"name="date" type="date" value="<%= task.date?.toISOString().split('T')[0]%>" readonly id="date<%=task._id.toString()%>">
+                    <button class="editButton" type="button"
+                        onClick="(() => {
+                            this.classList.toggle('hidden');document.getElementById('title<%= task._id.toString() %>').toggleAttribute('readonly');document.getElementById('saveButton<%=task._id.toString()%>').classList.toggle('hidden');document.getElementById('date<%= task._id.toString() %>').toggleAttribute('readonly');
+                            '<% if (!task.date) { %>'
+                                document.getElementById('date<%= task._id.toString() %>').classList.toggle('hide');
+                            '<% } %>'
+                        })()"
+                    >Edit</button>
+                    <button type=submit id="saveButton<%= task._id.toString() %>" class="hidden saveButton">Save</button>
+                    <button formaction="/todos/<%= task._id.toString() %>?_method=DELETE"class="deleteButton" type="submit">Delete</button>
+                </form>
+                
+            </div>
+          <% }) %>
+        </ul>
+
+        
+</div>
+<%- include("partials/footer") %>
+
+<!-- //Selectors
+const toggle = document.querySelector('input')
+const inputBox = document.getElementById("inputBox")
+const list = document.getElementById("list")
+// const li = document.getElementsByTagName("li")
+
+//Helper Functions
+function toggleinputBox() {
+    if (inputBox.style.visibility === "hidden") {
+        inputBox.style.visibility = "visible"
+    } else {
+        inputBox.style.visibility = "hidden"
+    }
+}
+
+function remove() {
+    list.removeChild(task)
+}
+
+
+//Hiding and Showing inputBox
+toggle.addEventListener('click', toggleinputBox)
+
+//Adding new task to list
+inputBox.addEventListener('keydown', function addToList(event) {
+    if (event.key === 'Enter') {
+        if (inputBox.value !== "") {
+            const task = document.createElement("li")
+            task.appendChild(document.createTextNode(inputBox.value))
+            list.appendChild(task)
+            const deleteButton = document.createElement("button")
+            deleteButton.innerHTML = "delete"
+            deleteButton.classList = "deleteButton"
+            task.appendChild(deleteButton)
+            deleteButton.addEventListener('click', function remove() {
+                list.removeChild(task)
+            })
+            inputBox.value = ""
+        }
+    }    
+})
+
+//Crossing Out Completed Task
+list.addEventListener("click", function(event) {
+    if (event.target.type !== "submit") {
+        event.target.classList.toggle('completed')
+    }
+    
+})
+ -->
+

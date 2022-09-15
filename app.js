@@ -78,8 +78,8 @@ app.post("/logout", (req, res, next) => {
 
 app.get("/todos", isLoggedIn, async (req, res) => {
     try {
-        const tasks = Task.find({"owner.id": req.user._id}).exec()
-        res.send(tasks)
+        const tasks = await Task.find({"owner.id": req.user._id}).exec()
+        res.render('todos', {tasks})
     } catch (err) {
         res.send(err)
     }

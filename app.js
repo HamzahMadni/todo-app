@@ -77,6 +77,14 @@ app.get("/", async (req, res) => {
     res.send(tasks)
 })
 
+function isLoggedIn(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next()
+    } else {
+        res.redirect("/login")
+    }
+}
+
 const port = process.env.PORT
 app.listen(port, () => {
     console.log(`Listening on port: ${port}`)

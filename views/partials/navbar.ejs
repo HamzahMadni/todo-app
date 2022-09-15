@@ -1,7 +1,7 @@
 <div class="navbar"> 
     <ul>
         <% if (user) { %>
-            <li><form action="/logout" method="POST"><button type="submit">Log Out</button></form></li>
+            <li><form class="logoutForm" action="/logout" method="POST"><button class="logoutBtn" type="submit">Log Out</button></form></li>
         <% } else { %>
             <li><a href="/signup">Sign Up</a></li>
             <li><a href="/login">Log in</a></li>

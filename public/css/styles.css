@@ -1,0 +1,159 @@
+body {
+    background-color: #171723;
+    margin: 0;
+}
+
+.hidden {
+    display: none;
+}
+
+.hide {
+    visibility: hidden;
+}
+
+h1 {
+    color: white;
+    text-decoration: none;
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    margin-top: 100px;
+    text-align: center;
+    margin-bottom: 0px;
+    font-size: 3em;
+}
+
+h2 {
+    color: white;
+    text-decoration: none;
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    margin-top: 25px;
+    text-align: center;
+    margin-bottom: 0px;
+}
+
+
+form {
+    text-align: center;
+    margin-top: 20px;
+    
+}
+
+form input {
+    width: 30%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-left: 0;
+    outline: 0;
+    border-radius: 3px;
+    border: 0;
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+}
+
+form button {
+    margin-top: 5px;
+    padding: 10px;
+    outline: 0;
+    border-radius: 3px;
+    border: 2px solid white;
+    background-color: #171723;
+    color: white;
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    width: 30%;
+}
+
+
+form button:hover {
+    border: 2px solid #27b304;
+    background-color: #27b304;
+}
+
+/* TODOPAGE */
+#todolist {
+    text-decoration: underline;
+}
+
+.todopage ul {
+    margin: 2.5%;
+    padding: 0;
+}
+
+.todopage form input {
+    margin: 5px 0px 5px 0px;
+}
+
+/* Adding Task */
+
+#dateInput {
+    width: 13%;
+}
+
+#createButton {
+    width: 10%;
+}
+
+/* Existing Tasks */
+
+.displayedForm {
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+.displayedForm .displayedTask {
+    width: 50%;
+    background-color: transparent;
+    color: white;
+   
+}
+
+.displayedForm .displayedDate {
+    width: 20%;
+    background-color:transparent;
+    color: white;
+}
+
+
+.displayedForm .editButton {
+    width: 10%;
+    margin-top: 0px;
+}
+
+.displayedForm .editButton:hover {
+    border: 2px solid #3f8ee8;
+    background-color: #3f8ee8;
+}
+
+.displayedForm .deleteButton:hover {
+    border: 2px solid #d63351;
+    background-color: #d63351;
+}
+.displayedForm .saveButton {
+    width: 10%;
+    margin-top: 0px;
+}
+
+.deleteButton {
+    width: 10%;
+    margin-top: 0px;
+}
+
+.container {
+    background-color: #231E3B;
+    border-radius: 5px;
+}
+
+.container:hover {
+    background-color: #3a3161;
+}
+
+.logoutBtn {
+    width: auto;
+}
+
+.logoutForm {
+    margin: 0;
+}

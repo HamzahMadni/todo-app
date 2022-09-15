@@ -37,6 +37,10 @@ app.use((req, res, next) => {
     next()
 })
 
+app.get("/", (req, res) => {
+    res.redirect("/todos")
+})
+
 app.get("/signup", (req, res) => {
     res.render("signup")
 })
@@ -72,9 +76,30 @@ app.post("/logout", (req, res, next) => {
     })
 })
 
-app.get("/", async (req, res) => {
-    const tasks = await Task.find().exec()
-    res.send(tasks)
+app.get("/todos", isLoggedIn, async (req, res) => {
+    try {
+        const tasks = Task.find({"owner.id": req.user._id}).exec()
+        res.send(tasks)
+    } catch (err) {
+        res.send(err)
+    }
+})
+
+app.post("/todos", isLoggedIn, async (req, res) => {
+    try {
+        const newTask = {
+            title: req.body.title,
+            date: req.body.date,
+            owner: {
+                id: req.user._id,
+                username: req.user.username
+            }
+        }
+        await Task.create(newTask)
+        res.redirect("/todos")
+    } catch (err) {
+        res.send(err)
+    }
 })
 
 function isLoggedIn(req, res, next) {
